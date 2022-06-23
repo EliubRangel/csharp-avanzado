@@ -6,6 +6,7 @@ do
     Console.WriteLine("Que decea hacer");
     Console.WriteLine("Opcion 0 salir");
     Console.WriteLine("Opcion 1 Colecciones");
+    Console.WriteLine("Opcion 2 Fundamentos POO");
 
     try
     {
@@ -14,11 +15,11 @@ do
         {
             Colecciones objColecciones = new Colecciones();
             opcion = objColecciones.ImprimirMenu();
-            if(opcion==1)
+            if (opcion == 1)
             {
-                List<int> list= objColecciones.CrearLista();
-                int found= objColecciones.BuscarEnLista(5,list);
-                if(found>-1)
+                List<int> list = objColecciones.CrearLista();
+                int found = objColecciones.BuscarEnLista(5, list);
+                if (found > -1)
                 {
                     Console.WriteLine($"Se encontro el numero 5 e la pocision {found} de la lista");
                 }
@@ -26,6 +27,24 @@ do
                 {
                     Console.WriteLine("No se encontro");
                 }
+            }
+
+        }
+        else if (opcion == 2)
+        {
+            FundamentosPOO objPOO = new FundamentosPOO();
+            opcion = objPOO.ImprimirMenu();
+            if (opcion == 1)
+            {
+                objPOO.ImprimirObjetos();
+            }
+            else if(opcion == 3){
+                string nombreMascota = Console.ReadLine();
+                Mascota mascota = new Mascota(nombreMascota);
+                Perro perro = new Perro(nombreMascota, 250);
+                mascota.Vacunar();
+                perro.Vacunar();
+
             }
         }
     }
