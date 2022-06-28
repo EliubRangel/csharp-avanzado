@@ -32,5 +32,25 @@ namespace csharp_avanzado
             this.LadridosAlDia = ladridosalDia;
         }
     }
+    public class perico : Mascota
+    {
+        public perico(string nombre): base(nombre)
+        {
+            if(this.LargoGarras == null)
+                this.LargoGarras = "muy largas";
+        }
+        public int NumeroPlumas{get;set;}
+        public string LargoGarras{get;set;}
+
+    }
+    public class persona
+    {
+        public string Nombre{get;set;}
+        public string Direccion{get;set;}
+    }
+    public class Alumno:persona
+    {
+        public int Matricula{get;set;}
+    }
 
 }

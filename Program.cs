@@ -44,7 +44,13 @@ do
                 Perro perro = new Perro(nombreMascota, 250);
                 mascota.Vacunar();
                 perro.Vacunar();
+                
 
+            }
+            else if (opcion == 4)
+            {
+                Tienda oxxo = new Tienda();
+                oxxo.VentasJunio();
             }
         }
     }
