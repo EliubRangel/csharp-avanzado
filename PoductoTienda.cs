@@ -100,6 +100,20 @@ namespace csharp_avanzado
             this.TodoTerreno = TodoTerreno;
         }
         public bool TodoTerreno { get; set; }
+        public override int Servicio()
+        {
+            int CostoServicio;
+            if(TodoTerreno==true)
+            {
+                CostoServicio= base.Servicio()+1000;
+            }
+            else
+            {
+                CostoServicio=base.Servicio();
+            }
+            return CostoServicio;
+        }
+      
     }
     public class Limosina : Automovil
     {
@@ -131,6 +145,9 @@ namespace csharp_avanzado
         public void VentasMes()
         {
             Compacto c = new Compacto(2018, "kia", "rio", 15000);
+            Camioneta p= new Camioneta(2022,"chevrolett","cheyenne",50000,true );
+            Limosina l= new Limosina(2015,"hummer","h2",25000,8);
+
 
         }
 
