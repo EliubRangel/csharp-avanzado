@@ -1,12 +1,15 @@
 ﻿using csharp_avanzado;
+using csharp_avanzado.PuntoVenta;
 Console.WriteLine("Bienvenidos a c# avanzado");
 int opcion = 0;
+PuntoVenta pdv = new PuntoVenta();
 do
 {
     Console.WriteLine("Que decea hacer");
     Console.WriteLine("Opcion 0 salir");
     Console.WriteLine("Opcion 1 Colecciones");
     Console.WriteLine("Opcion 2 Fundamentos POO");
+    Console.WriteLine("Opcion 3 Entrar al punto de venta");
 
     try
     {
@@ -53,8 +56,11 @@ do
                 oxxo.VentasJunio();
             }
         }
+        else if(opcion==3){
+            pdv.IniciarPuntoVenta();
+        }
     }
-    catch
+    catch(Exception e)
     {
         Console.WriteLine("Algo salio mal, intente de nuevo");
 

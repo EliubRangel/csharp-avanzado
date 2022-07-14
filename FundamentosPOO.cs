@@ -13,6 +13,7 @@ namespace csharp_avanzado
             Console.WriteLine("Ocion 2 Imprimir objeto Aautomovil"); 
             Console.WriteLine("Opcion 3 Registrar mascota y vacunarla");
             Console.WriteLine("Opcion 4 Venta de productos");
+            Console.WriteLine("Opcion 5 Nominas de empleados");
             int opcion = int.Parse(Console.ReadLine());
             return opcion;
         }

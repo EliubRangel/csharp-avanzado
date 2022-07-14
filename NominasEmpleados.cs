@@ -78,4 +78,55 @@ namespace csharp_avanzado
             Console.WriteLine($"El total a pagar a {D.Nombre}es{D.Pagar()}");
         }
     }
+    public class Habitacion
+    {
+        public int NumeroCamas{get;set;}
+        public int Precio{get;set;}
+        public string Descripcion{get;set;}
+        public Habitacion (int NumeroCamas, int Precio, string Descripcion)
+        {
+
+        }
+
+        public virtual int Reservar(){
+            return Precio;
+        }
+     
+    }
+    public class HabitacionSencilla:Habitacion
+    {
+        public HabitacionSencilla(int NumeroCamas, int Precio,string Descripcion)
+        :base(NumeroCamas,Precio,Descripcion)
+        {
+        }
+        public override int Reservar()
+        {
+            return 800 + base.NumeroCamas * 200;
+        }
+    }
+    public class HabitacionSuite:Habitacion
+    {
+        
+        
+            public HabitacionSuite( int NumeroCamas,int precio, string Descripcion,bool VistaMar)
+            : base(NumeroCamas,precio,Descripcion)
+            {
+                this.VistaMar=VistaMar;
+            }
+            public bool VistaMar{get;set;}
+
+        public override int Reservar()
+        {
+            int extra = 0;
+            if(this.VistaMar)
+                extra = 1000;
+            return 3000 + extra;
+        }
+    }
+    public class Recepcion
+    {
+        HabitacionSencilla Hs=new HabitacionSencilla(3,500,"habitacion con 3 camas");
+        HabitacionSuite S=new HabitacionSuite(2,3000,"habitacion 5 estrellas",true);
+
+    }
 }
