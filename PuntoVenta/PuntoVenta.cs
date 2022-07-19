@@ -37,6 +37,7 @@ namespace csharp_avanzado.PuntoVenta
                 {
                     string terminar = "";
                     List<DetalleInventario> detalleInventarios = new List<DetalleInventario>();
+                    Venta vta = new Venta();
 
                     do
                     {
@@ -44,8 +45,8 @@ namespace csharp_avanzado.PuntoVenta
                         Console.WriteLine("Inserte el codigo de barras");
                         string codigoBarras = Console.ReadLine();
 
-                        DetalleInventario detalle = this.Inventario.BuscarPorCodigoBarras(codigoBarras);
-                        if (detalle == null)
+                        DetalleInventario detalleInv = this.Inventario.BuscarPorCodigoBarras(codigoBarras);
+                        if (detalleInv == null)
                         {
                             Console.WriteLine($"No se encontro el producto {codigoBarras}");
                             continue;
@@ -54,19 +55,24 @@ namespace csharp_avanzado.PuntoVenta
                         Console.WriteLine("Inserte la cantidad:");
                         int cantidadVenta = int.Parse(Console.ReadLine());
 
-                        if(detalle.Cantidad < cantidadVenta){
+                        if(detalleInv.Cantidad < cantidadVenta){
                             Console.WriteLine("No hay stock suficiente");
                             continue;
                         }
                         
-                        detalleInventarios.Add(detalle);
+                        detalleInventarios.Add(detalleInv);
+                        DetalleVenta detalleVenta = new DetalleVenta(detalleInv.ProductoInventario.CodigoBarras,cantidadVenta,detalleInv.ProductoInventario.Precio*cantidadVenta);
+                        vta.DetallesVenta.Add(detalleVenta);
 
+                        Console.WriteLine("Escriba terminar para procesar la venta o Enter para continuar");
+                        terminar = Console.ReadLine();
                     }
-                    while (terminar != "cerrar");
+                    while (terminar != "terminar");
+                    //procesar venta
+                    vta.ProcesarVenta();
 
-
-
-                    // Pedir la cantidad 
+                    //reducir inventario
+                    Inventario.ReducirInventario(vta.DetallesVenta);
                 }
                 else if (opcion == 2)
                 {

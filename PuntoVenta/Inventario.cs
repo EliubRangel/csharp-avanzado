@@ -43,6 +43,17 @@ namespace csharp_avanzado.PuntoVenta
 
             return detalleBusqueda;
         }
+        
+        public void ReducirInventario(List<DetalleVenta> detalleVentas){
+            for(int i = 0; i < detalleVentas.Count; i++){
+                DetalleVenta detalleVenta = detalleVentas[i];
+                for(int j=0; j<DetalleInventario.Count; j++){
+                    if(DetalleInventario[j].ProductoInventario.CodigoBarras == detalleVenta.CodigoBarras){
+                        DetalleInventario[j].Cantidad -= detalleVenta.Cantidad;
+                    }
+                }
+            }
+        }
     }
 
     public class DetalleInventario
