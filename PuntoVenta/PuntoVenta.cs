@@ -31,6 +31,7 @@ namespace csharp_avanzado.PuntoVenta
                 Console.WriteLine("Opcion 2 Ver inventario");
                 Console.WriteLine("Opcion 3 Registrar producto");
                 Console.WriteLine("Opcion 4 Ingresar inventario");
+                Console.WriteLine("Opcion 5 Total del dia");
                 Console.WriteLine("==============================");
                 opcion = Convert.ToInt32(Console.ReadLine());
                 if (opcion == 1)
@@ -73,10 +74,12 @@ namespace csharp_avanzado.PuntoVenta
 
                     //reducir inventario
                     Inventario.ReducirInventario(vta.DetallesVenta);
+                    VentasDia.Add(vta);
+                    Console.WriteLine(vta);
                 }
                 else if (opcion == 2)
                 {
-                    Console.WriteLine($"Codigo Barras  |  Descripcion  |  Precio  |  Cantidad");
+                    Console.WriteLine($"{"Codigo Barras".PadRight(10)}|{"Descripcion".PadRight(30)}|{"Precio".PadRight(5)}|{"Cantidad".PadRight(3)}");
                     for (int i = 0; i < this.Inventario.DetalleInventario.Count(); i++)
                     {
                         Console.WriteLine(this.Inventario.DetalleInventario[i]);
@@ -98,6 +101,31 @@ namespace csharp_avanzado.PuntoVenta
                         Console.WriteLine("Se agrego el producto correctamente");
                     else
                         Console.WriteLine($"El codigo de barras {codigoBarras} ya existe en el inventario");
+                }
+                else if(opcion == 4)
+                {
+                    Console.WriteLine("Informacion producto");
+                    Console.WriteLine("Codigo de barras:");
+                    string codigoBarras = Console.ReadLine();
+                    Console.WriteLine("Cantidad a ingresar:");
+                    int cantidad = Convert.ToInt32(Console.ReadLine());
+                    if(Inventario.AumentarInventario(codigoBarras,cantidad))
+                    {
+                        Console.WriteLine($"Se agregaron {cantidad} unidades al producto {codigoBarras}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No existe el producto con codigo de barras {codigoBarras}");
+                    }
+                }
+                else if(opcion == 5)
+                {
+                    decimal total = 0;
+                    foreach(Venta vta in VentasDia)
+                    {
+                        total += vta.Total;
+                    }
+                    Console.WriteLine($"El total de ventas del dia es {total}");
                 }
             }
             while (opcion > 0);

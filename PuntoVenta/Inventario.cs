@@ -6,7 +6,13 @@ namespace csharp_avanzado.PuntoVenta
 
         public Inventario()
         {
-            this.DetalleInventario = new List<DetalleInventario>();
+            this.DetalleInventario = new List<DetalleInventario>()
+            {
+                new DetalleInventario(new Producto("123","Computador Dell",5000),10),
+                new DetalleInventario(new Producto("345","teclado de computadora", 500),5),
+                new DetalleInventario(new Producto("567","mouse",250),3),
+                new DetalleInventario(new Producto("678","monitor",1500),6)
+            };
         }
 
         public bool AgregarProducto(string codigoBarras, string descripcion, decimal precio, int cantidad)
@@ -44,6 +50,15 @@ namespace csharp_avanzado.PuntoVenta
             return detalleBusqueda;
         }
         
+        public bool AumentarInventario(string codigoBarras, int cnt)
+        {
+            DetalleInventario detInv = BuscarPorCodigoBarras(codigoBarras);
+            if(detInv == null)
+                return false;
+            detInv.Cantidad += cnt;
+            return true;
+        }
+
         public void ReducirInventario(List<DetalleVenta> detalleVentas){
             for(int i = 0; i < detalleVentas.Count; i++){
                 DetalleVenta detalleVenta = detalleVentas[i];
@@ -68,7 +83,7 @@ namespace csharp_avanzado.PuntoVenta
 
         public override string ToString()
         {
-            return $"{ProductoInventario.CodigoBarras} {ProductoInventario.Descripcion} {ProductoInventario.Precio} {Cantidad}";
+            return $"{ProductoInventario.CodigoBarras.PadRight(13)}|{ProductoInventario.Descripcion.PadRight(30)}|{ProductoInventario.Precio.ToString().PadRight(5)}|{Cantidad.ToString().PadRight(3)}";
         }
     }
 }

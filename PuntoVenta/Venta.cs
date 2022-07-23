@@ -17,6 +17,18 @@ namespace csharp_avanzado.PuntoVenta
             }
             Fecha= DateTime.Now;
         }
+
+        public override string ToString()
+        {
+            string vtaStr = "";
+
+            foreach(DetalleVenta detVta in DetallesVenta)
+            {
+                vtaStr = $"{vtaStr}{detVta}\n";
+            }
+            vtaStr = $"{vtaStr} Total: {Total}";
+            return vtaStr;
+        }
     }
 
     public class DetalleVenta
@@ -30,6 +42,10 @@ namespace csharp_avanzado.PuntoVenta
             this.CodigoBarras = codigoBarras;
             this.Cantidad = cantidad;
             this.Importe = importe;
+        }
+        public override string ToString()
+        {
+            return $"{CodigoBarras.PadRight(10)}|{Cantidad.ToString().PadRight(10)}|{Importe.ToString().PadRight(10)}";
         }
     }
 
