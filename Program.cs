@@ -1,8 +1,10 @@
 ﻿using csharp_avanzado;
 using csharp_avanzado.PuntoVenta;
+using csharp_avanzado.Finanzas;
 Console.WriteLine("Bienvenidos a c# avanzado");
 int opcion = 0;
 PuntoVenta pdv = new PuntoVenta();
+Finanzas Fnz= new Finanzas();
 do
 {
     Console.WriteLine("Que decea hacer");
@@ -10,6 +12,7 @@ do
     Console.WriteLine("Opcion 1 Colecciones");
     Console.WriteLine("Opcion 2 Fundamentos POO");
     Console.WriteLine("Opcion 3 Entrar al punto de venta");
+    Console.WriteLine("Opcion 4 Entrar a finanzas");
 
     try
     {
@@ -58,6 +61,10 @@ do
         }
         else if(opcion==3){
             pdv.IniciarPuntoVenta();
+        }
+        else if(opcion==4)
+        {
+            Fnz.AdministrarFinanzas();
         }
     }
     catch(Exception e)
