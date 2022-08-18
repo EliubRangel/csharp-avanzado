@@ -7,13 +7,21 @@ namespace csharp_avanzado
         public string Direccion{get;set;}
         public List<Pruebas> ListaRendimiento{get;set;}
         
-        public Atletas (string Nombre,string Direccion, List<Pruebas> ListaRendimiento,int ID)
+        public Atletas (string Nombre,string Direccion,int ID)
         {
             this.Nombre=Nombre;
             this.Direccion=Direccion;
-            this.ListaRendimiento=ListaRendimiento;
+            this.ListaRendimiento= new List<Pruebas>;
             this.ID=ID;
         }
+        public void AgregarPrueba()
+        {
+            public string CrearPrueba {get;set;}
+            public string InformacionPrueba {get;set;}
+
+            
+        }
+        
         //crear metodo agrfgar prueba 
         // recibe informacion de la prueba
         //crear la prueba y agrgarlo a la lista de pruebas
