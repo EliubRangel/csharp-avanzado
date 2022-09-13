@@ -4,6 +4,10 @@ namespace csharp_avanzado
     {
         public decimal puntaje{get;set;}
         public string Descripcion{get;set;}
+        public Pruebas()
+        {
+            
+        }
         public Pruebas(decimal puntaje,string Descripcion)
         {
             this.Descripcion=Descripcion;

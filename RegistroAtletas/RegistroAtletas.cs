@@ -35,7 +35,6 @@ namespace csharp_avanzado
                 {
                     Console.WriteLine("Ingrese prueba");
                     string prueba= Console.ReadLine();
-                    this.agrega
                 }
 
            }

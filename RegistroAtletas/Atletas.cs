@@ -11,13 +11,11 @@ namespace csharp_avanzado
         {
             this.Nombre=Nombre;
             this.Direccion=Direccion;
-            this.ListaRendimiento= new List<Pruebas>;
+            this.ListaRendimiento= new List<Pruebas>();
             this.ID=ID;
         }
         public void AgregarPrueba()
         {
-            public string CrearPrueba {get;set;}
-            public string InformacionPrueba {get;set;}
 
             
         }
