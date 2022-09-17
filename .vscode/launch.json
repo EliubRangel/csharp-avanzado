@@ -16,6 +16,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "eventos",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MisEventos/bin/Debug/net6.0/MisEventos.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"

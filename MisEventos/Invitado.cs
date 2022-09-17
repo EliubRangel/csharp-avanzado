@@ -15,8 +15,8 @@ namespace MisEventos
         {
             this.Direccion = Direccion;
             this.Nombre = Nombre;
-            this.Telefono = Telefono;
-            int.MaxValue
+            
+            
         }
         public override string ToString()
         {

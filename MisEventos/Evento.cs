@@ -20,11 +20,13 @@ namespace MisEventos
             this.Descripcion = Descripcion;
             this.Fecha = Fecha;
             this.Nombre=Nombre;
+            
         }
-        public void AgregarInvitado(string Nombre, string Direccion, int Telefono)
+        public void AgregarInvitado(string Nombre, string Direccion, string Telefono)
         {
+            
             Invitado Inv =new Invitado(Nombre,Direccion,Telefono);
-            this.ListaInvitados.Add(Inv);
+            this.ListaInvitados= new List<Invitado>();
         }
 
         public override string ToString()
