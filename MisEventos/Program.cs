@@ -64,7 +64,7 @@ do
     }
     else if (Opcion == 3)
     {
-        Console.WriteLine(ListaINvitado);
+        Console.WriteLine();
     }
 
 }
