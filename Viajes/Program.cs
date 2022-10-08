@@ -1,8 +1,11 @@
-﻿using Viajes;
+﻿using System.Globalization;
+using Viajes;
+
 List<Viaje>ListaViajes= new List<Viaje>();
 int Opcion= 0;
 do
 {
+    
    Console.WriteLine("==============================");
     Console.WriteLine("Que deseas hacer?");
     Console.WriteLine("Opcion 0 Salir");
@@ -10,7 +13,7 @@ do
     Console.WriteLine("Opcion 2 Mostrar total");
     Console.WriteLine("Opcion 3 Imprimir datos");
     Console.WriteLine("==============================");
-    
+    Opcion = int.Parse(Console.ReadLine());
 
     if (Opcion==1)
     {
@@ -23,12 +26,19 @@ do
         DateTime Fecha= DateTime.ParseExact(Console.ReadLine(),"dd-MM-yyyy", CultureInfo.InvariantCulture);
         Console.WriteLine("Ingrese pasajero");
         string Pasajero= Console.ReadLine();
-
     }
     if (Opcion==2)
     {
         Console.WriteLine("Ingrese el Id del viaje a buscar");
-        for (S)
+        for(int i=0; i<ListaViajes.Count();i++)
+        {
+            Console.WriteLine(ListaViajes[i]);
+            
+        }
+    }
+    if (Opcion==3)
+    {
+        
     }
 }
 while (Opcion!=0);

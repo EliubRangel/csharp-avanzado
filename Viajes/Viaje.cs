@@ -26,7 +26,7 @@ namespace Viajes
         }
         public override string ToString()
         {
-            return base.ToString();
+            return $"{Id.ToString().PadRight(2)}|{Distancia.ToString().PadRight(3)}|{Tarifa.ToString().PadRight(50)}|{Fecha.ToLongTimeString().PadRight(20)}|{Pasajero.PadRight(20)}";
         }
     }
 }
