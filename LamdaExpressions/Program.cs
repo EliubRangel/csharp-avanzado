@@ -12,11 +12,15 @@ DemoLambda demo = new DemoLambda();
 // });
 
 // demo.SaludosPagados((int x, string artista) => Console.WriteLine($"Pague {x} por un saludo a {artista}"));
-// demo.vender(() => {
-//     return 10;
-// });
 
-// demo.vender(() => 20);
+
+demo.vender(() => {
+    return 10;
+});
+
+demo.vender(() => 20);
+
+
 demo.vender2((int x) => {
     return x * 0.16;
 });

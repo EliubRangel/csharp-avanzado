@@ -11,6 +11,7 @@ namespace Floreria
         public string Destinatario {get;set;}
         public string Direccion {get; set;}
         public string TelefonoContacto {get;set;}
+        public List<Flor> Flores { get; set; }
 
         public Pedidos (int Id, string Destinatario, string Direccion, string TelefonoContacto)
         {
@@ -18,10 +19,18 @@ namespace Floreria
             this.Destinatario = Destinatario;
             this.Direccion = Direccion;
             this.TelefonoContacto = TelefonoContacto;
+            this.Flores = new List<Flor>();
         }
         public override string ToString()
         {
-            return $"{Id.ToString().PadRight(10)}|{Destinatario.ToString().PadRight(10)}|{Direccion.ToString().PadRight(20)}|{TelefonoContacto.ToString().PadRight(12)}";
+            string sFlores = "";
+            foreach (Flor item in Flores)
+            {
+                sFlores += item.ToString();
+            }
+
+            string strFlores = string.Join("\n", Flores.Select(x => x.ToString()));
+            return $"{Id.ToString().PadRight(10)}|{Destinatario.ToString().PadRight(10)}|{Direccion.ToString().PadRight(20)}|{TelefonoContacto.ToString().PadRight(12)}|{sFlores.ToString().PadRight(10)}";
         }
 
     }

@@ -9,6 +9,8 @@ do
     Console.WriteLine("Opcion 0 Salir");
     Console.WriteLine("Opcion 1 Regitrar flor");
     Console.WriteLine("Opcion 2 Consultar flor");
+    Console.WriteLine("Opcion 3 registrar pedido");
+    Console.WriteLine("Opcion 4 Consultar pedido");
     Console.WriteLine("==============================");
     Opcion = int.Parse(Console.ReadLine());
     
@@ -36,7 +38,7 @@ do
         if(flor != null)
             Console.WriteLine(flor);
         else
-            Console.WriteLine("No se encontro la flor con el Id indicado");
+            Console.WriteLine($"No se encontro la flor con el Id {IdFlor}");
     }
     if(Opcion==3)
     {
@@ -49,6 +51,28 @@ do
         string Direccion =Console.ReadLine();
         Console.WriteLine("Ingrese el telefono del contacto");
         string TelefonoContacto = Console.ReadLine();
+        Pedidos Pedidos = new Pedidos (Id,Destinatario,Direccion,TelefonoContacto);
+        int IdFlor = 0;
+        do{
+            Console.WriteLine("Ingrese el id de la flor - Ingrese 0 para terminar");
+            IdFlor = int.Parse(Console.ReadLine());
+            Flor flor = ListaFlores.FirstOrDefault(x => x.Id == IdFlor);
+            ListaFlores.Add(flor);
+        }while(IdFlor==0);
+
+        ListaPedidos.Add(Pedidos);
+    }
+    if (Opcion==4)
+    {
+        
+        Console.WriteLine("Ingrese el Id del pedido a buscar");
+        int IdPedidos = int.Parse(Console.ReadLine());
+        Pedidos pedidos = ListaPedidos.FirstOrDefault(x => x.Id == IdPedidos);
+        if (pedidos != null)
+            Console.WriteLine(pedidos);
+        else 
+            Console.WriteLine ($"No se encontro el pedido con el Id{IdPedidos}");
+
     }
     
 }
