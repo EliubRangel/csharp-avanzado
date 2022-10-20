@@ -23,14 +23,9 @@ namespace Floreria
         }
         public override string ToString()
         {
-            string sFlores = "";
-            foreach (Flor item in Flores)
-            {
-                sFlores += item.ToString();
-            }
-
             string strFlores = string.Join("\n", Flores.Select(x => x.ToString()));
-            return $"{Id.ToString().PadRight(10)}|{Destinatario.ToString().PadRight(10)}|{Direccion.ToString().PadRight(20)}|{TelefonoContacto.ToString().PadRight(12)}|{sFlores.ToString().PadRight(10)}";
+
+            return $"{Id.ToString().PadRight(10)}|{Destinatario.ToString().PadRight(10)}|{Direccion.ToString().PadRight(20)}|{TelefonoContacto.ToString().PadRight(12)} \n {strFlores.ToString()}";
         }
 
     }

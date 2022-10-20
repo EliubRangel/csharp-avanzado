@@ -56,9 +56,14 @@ do
         do{
             Console.WriteLine("Ingrese el id de la flor - Ingrese 0 para terminar");
             IdFlor = int.Parse(Console.ReadLine());
-            Flor flor = ListaFlores.FirstOrDefault(x => x.Id == IdFlor);
-            ListaFlores.Add(flor);
-        }while(IdFlor==0);
+            if(IdFlor != 0){
+                Flor flor = ListaFlores.FirstOrDefault(x => x.Id == IdFlor);
+                if(flor != null)
+                    Pedidos.Flores.Add(flor);
+                else
+                    Console.WriteLine($"La flor con el id {IdFlor} no existe");
+            }
+        }while(IdFlor!=0);
 
         ListaPedidos.Add(Pedidos);
     }

@@ -19,7 +19,10 @@ namespace Restaurant
 
         public override string ToString()
         {
-            return ($"{Id.ToString().PadRight(10)}|{NumeroMesa.ToString().PadRight(10)}|{Nombrecomensal.ToString().PadRight(10)}");
+            IEnumerable<string> alimentosStr = AlimentosPedidos.Select(x => x.ToString());
+            string StrOrden = string.Join("\n", alimentosStr);
+
+            return ($"{Id.ToString().PadRight(10)}|{NumeroMesa.ToString().PadRight(10)}|{Nombrecomensal.ToString().PadRight(10)}\n{StrOrden}");
         }
     }
 }
