@@ -1,7 +1,7 @@
 ﻿using Floreria;
+using System.Data.Entity;
 int Opcion= 0;
-List<Flor> ListaFlores = new List<Flor>();
-List<Pedidos> ListaPedidos = new List<Pedidos>();
+var context = new FloreriaDbContext();
 do 
 {
   Console.WriteLine("==============================");
@@ -27,14 +27,15 @@ do
         Console.WriteLine("Ingrese precio de la flor");
         int Precio= int.Parse(Console.ReadLine());
         Flor flor = new Flor(Id,NombreFlor,Descripcion,Precio);
-        ListaFlores.Add(flor);
+        context.Flores.Add(flor);
+        context.SaveChanges();
     }
     if(Opcion==2)
     {
         Console.WriteLine("Ingrese el Id de la flor a buscar");
         int IdFlor = int.Parse(Console.ReadLine());
         // Flor flor = ListaFlores.FirstOrDefault((Flor x)=> x.Id == IdFlor);
-        Flor flor = ListaFlores.FirstOrDefault(x => x.Id == IdFlor);
+        Flor flor = context.Flores.FirstOrDefault(x => x.Id == IdFlor);
         if(flor != null)
             Console.WriteLine(flor);
         else
@@ -51,13 +52,13 @@ do
         string Direccion =Console.ReadLine();
         Console.WriteLine("Ingrese el telefono del contacto");
         string TelefonoContacto = Console.ReadLine();
-        Pedidos Pedidos = new Pedidos (Id,Destinatario,Direccion,TelefonoContacto);
+        Pedido Pedidos = new Pedido (Id,Destinatario,Direccion,TelefonoContacto);
         int IdFlor = 0;
         do{
             Console.WriteLine("Ingrese el id de la flor - Ingrese 0 para terminar");
             IdFlor = int.Parse(Console.ReadLine());
             if(IdFlor != 0){
-                Flor flor = ListaFlores.FirstOrDefault(x => x.Id == IdFlor);
+                Flor flor = context.Flores.FirstOrDefault(x => x.Id == IdFlor);
                 if(flor != null)
                     Pedidos.Flores.Add(flor);
                 else
@@ -65,14 +66,17 @@ do
             }
         }while(IdFlor!=0);
 
-        ListaPedidos.Add(Pedidos);
+        context.Pedidos.Add(Pedidos);
+        context.SaveChanges();
     }
     if (Opcion==4)
     {
         
         Console.WriteLine("Ingrese el Id del pedido a buscar");
         int IdPedidos = int.Parse(Console.ReadLine());
-        Pedidos pedidos = ListaPedidos.FirstOrDefault(x => x.Id == IdPedidos);
+        Pedido pedidos = context.Pedidos
+            .Include(x => x.Flores)
+            .FirstOrDefault(x => x.Id == IdPedidos);
         if (pedidos != null)
             Console.WriteLine(pedidos);
         else 

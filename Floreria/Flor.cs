@@ -11,6 +11,7 @@ namespace Floreria
         public string NombreFlor {get;set;}
         public string Descripcion {get;set;}
         public int Precio {get;set;} 
+        public List<Pedido> Pedidos { get; set; }
 
         public Flor (int Id, string NombreFlor, string Descripcion, int Precio)
     {

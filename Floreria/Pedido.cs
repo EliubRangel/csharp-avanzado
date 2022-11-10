@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Floreria
 {
-    public class Pedidos
+    public class Pedido
     {
         public int Id {get;set;}
         public string Destinatario {get;set;}
@@ -13,7 +13,7 @@ namespace Floreria
         public string TelefonoContacto {get;set;}
         public List<Flor> Flores { get; set; }
 
-        public Pedidos (int Id, string Destinatario, string Direccion, string TelefonoContacto)
+        public Pedido (int Id, string Destinatario, string Direccion, string TelefonoContacto)
         {
             this.Id = Id;
             this.Destinatario = Destinatario;
@@ -25,6 +25,7 @@ namespace Floreria
         {
             string strFlores = string.Join("\n", Flores.Select(x => x.ToString()));
 
+            // var strFlores = "";
             return $"{Id.ToString().PadRight(10)}|{Destinatario.ToString().PadRight(10)}|{Direccion.ToString().PadRight(20)}|{TelefonoContacto.ToString().PadRight(12)} \n {strFlores.ToString()}";
         }
 
