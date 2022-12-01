@@ -1,5 +1,5 @@
 ﻿using Floreria;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 int Opcion= 0;
 var context = new FloreriaDbContext();
 do 

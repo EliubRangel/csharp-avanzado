@@ -1,7 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+
 namespace csharp_avanzado.Finanzas
 {
     public class Presupuesto
     {
+        public int Id {get;set;}
         public List<Ingreso> ListaIngresos{get;set;}
         
         public decimal TotalIngresos{get;set;}
@@ -18,6 +25,7 @@ namespace csharp_avanzado.Finanzas
             this.ListaIngresos.Add(ingreso);
             TotalIngresos=TotalIngresos+Importe;
             Restante=Restante+Importe;
+            Id=Id;
             
             
         } 

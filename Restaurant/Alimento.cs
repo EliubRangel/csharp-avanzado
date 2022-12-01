@@ -11,8 +11,9 @@ namespace Restaurant
         public string Nombre {get;set;}
         public string Descripcion {get;set;}
         public int Precio {get;set;}
+        public string Tag { get; set; }
 
-        
+        public List<Orden> Ordenes {get;set;    } 
 
         public Alimento ()
         {

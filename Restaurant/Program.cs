@@ -1,21 +1,6 @@
 ﻿using Restaurant;
 int Opcion = 0;
-List<Alimento> ListaAlimento = new List<Alimento>{
-    new Alimento {
-        Id = 1,
-        Nombre = "Pozole",
-        Descripcion = "Pozole rojo a lo sinaloense",
-        Precio = 90
-    },
-    new Alimento {
-        Id = 2,
-        Nombre = "Enchiladas",
-        Descripcion = "Enchiladas suizas",
-        Precio = 90
-    }
-};
-List<Orden> ListaOrden = new List<Orden>();
-
+var Context = new RestaurantDbContext();
 
 do
 {
@@ -39,19 +24,20 @@ do
         string Descripcion = Console.ReadLine();
         Console.WriteLine("Ingrese el precio del alimento");
         int precio = int.Parse(Console.ReadLine());
-        ListaAlimento.Add(new Alimento
+        Context.Alimento.Add(new Alimento
         {
             Id = Id,
             Nombre = Nombre,
             Descripcion = Descripcion,
             Precio = precio
         });
+        Context.SaveChanges();
     }
     if (Opcion == 2)
     {
         Console.WriteLine("Ingrese el Id del alimento a buscar");
         int IdAlimento = int.Parse(Console.ReadLine());
-        Alimento alimento = ListaAlimento.FirstOrDefault(x => x.Id == IdAlimento);
+        Alimento alimento = Context.Alimento.FirstOrDefault(x => x.Id == IdAlimento);
         if (alimento != null)
             Console.WriteLine(alimento);
         else
@@ -79,19 +65,20 @@ do
             IdAlimento = int.Parse(Console.ReadLine());
             if (IdAlimento != 0)
             {
-                Alimento alimento = ListaAlimento.FirstOrDefault(x => x.Id == IdAlimento);
+                Alimento alimento = Context.Alimento.FirstOrDefault(x => x.Id == IdAlimento);
                 if (alimento != null)
-                    orden.AlimentosPedidos.Add(alimento);
+                    orden.Alimentos.Add(alimento);
             }
         }
         while (IdAlimento != 0);
-        ListaOrden.Add(orden);
+        Context.Orden.Add(orden);
+        Context.SaveChanges();
     }
     if (Opcion == 4)
     {
         Console.WriteLine("Ingrese el Id de la orden a buscar");
         int Idorden = int.Parse(Console.ReadLine());
-        Orden orden1 = ListaOrden.FirstOrDefault(x => x.Id == Idorden);
+        Orden orden1 = Context.Orden.FirstOrDefault(x => x.Id == Idorden);
         if (orden1 != null)
             Console.WriteLine(orden1);
         else

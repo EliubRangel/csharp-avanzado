@@ -1,8 +1,10 @@
 ﻿using System;
 using csharp_avanzado.Finanzas;
+using Finanzas;
 
 Presupuesto Presupuesto = new Presupuesto();
 List<Gastos> ListaGastos = new List<Gastos>();
+var Context = new FinanzasDbcontext();
 
 int Opcion = 0;
 do
@@ -34,12 +36,15 @@ do
         Console.WriteLine("Descreipcion del gasto");
         string Descripcion = Console.ReadLine();
         Gastos gastos = new Gastos(DateTime.Now, gasto, Descripcion);
-        ListaGastos.Add(gastos);
+        Context.Gastos.Add(gastos);
         Presupuesto.AplicarGasto(gasto);
+        Context.SaveChanges();
     }
     else if (Opcion == 3)
     {
-        for (int i = 0; i < ListaGastos.Count(); i++)
+       Console.WriteLine("Ver ingreso");
+
+        for (int i = 0; i < Context.Gastos.Count(); i++)
         {
             Console.WriteLine(ListaGastos[i]);
         }
