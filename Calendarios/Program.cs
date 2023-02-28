@@ -41,9 +41,11 @@ do
         Console.WriteLine("Ingrese el Id del calendario a buscar");
         int IdCalendario = int.Parse(Console.ReadLine());
         Calendario calendario = context.Calendarios.FirstOrDefault(x => x.Id == IdCalendario);
+        Evento evento = context.Eventos.FirstOrDefault();
 
         if (calendario != null)
             Console.WriteLine(calendario);
+
         else
             Console.WriteLine($"No se encontro el calendario con el Id {IdCalendario}");
     }
@@ -79,7 +81,7 @@ do
         }
         else
         {
-            Console.WriteLine("No se encontro el Id");
+            Console.WriteLine($"No se encontro el calendario con este Id {IdCalendario}");
         }
 
 
@@ -94,11 +96,11 @@ do
         {
             context.Eventos.Remove(evento);
             context.SaveChanges();
-            Console.WriteLine("Se elimino" + evento);
+            Console.WriteLine("Se elimino el evento con el Id " + evento);
         }
         else
         {
-            Console.WriteLine("No se encontro el evento" + evento);
+            Console.WriteLine($"No se encontro el evento con este Id{Id}");
         }
 
     }
@@ -126,9 +128,9 @@ do
             Console.WriteLine("Ingrese 1 si desea notificaciones y cualquier otro numero si no desea notificaciones");
             int NotificacionActiva = int.Parse(Console.ReadLine());
             bool NotificacionBool = NotificacionActiva == 1;
-
             context.Eventos.Update(evento);
             context.SaveChanges();
+            Console.WriteLine($"El evento con el Id {Id} se actualizo con exito");
 
         }
         else
