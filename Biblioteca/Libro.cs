@@ -13,7 +13,16 @@ namespace Biblioteca
         public DateTime FechaImpresion {get;set;}
     
         public List<Prestamo> Prestamo {get;set;}
-    
+
+
+        public Libro()
+        {
+
+        }
+        public override string ToString()
+        {
+            return($"{Id.ToString().PadRight(10)}|{Nombre.ToString().PadRight(20)}|{Autor.ToString().PadRight(20)}|{FechaImpresion.ToString("dd-mm-yyyy").PadRight(20)}");
+        }
     }
 
 
