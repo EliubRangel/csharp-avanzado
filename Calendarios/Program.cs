@@ -96,11 +96,11 @@ do
         {
             context.Eventos.Remove(evento);
             context.SaveChanges();
-            Console.WriteLine("Se elimino el evento con el Id " + evento);
+            Console.WriteLine($"Se elimino el evento con el Id  {Id}");
         }
         else
         {
-            Console.WriteLine($"No se encontro el evento con este Id{Id}");
+            Console.WriteLine($"No se encontro el evento con este Id {Id}");
         }
 
     }
@@ -135,7 +135,7 @@ do
         }
         else
         {
-            Console.WriteLine("No se encontro el Id" + Id + "del evento.");
+            Console.WriteLine($"No se encontro el Id {Id} del evento");
         }
 
 
