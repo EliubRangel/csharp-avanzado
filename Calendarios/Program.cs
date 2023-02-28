@@ -5,6 +5,7 @@ int Opcion = 0;
 var context = new CalendarioDbContext();
 
 
+
 do
 {
     Console.WriteLine("==============================");
@@ -21,6 +22,7 @@ do
     if (Opcion == 1)
     {
 
+        Console.WriteLine("Crear un calendario");
         Console.WriteLine("Ingrese datos del calendario");
         Console.WriteLine("Nombre del calendario");
         string NombreCalendario = Console.ReadLine();
@@ -29,11 +31,13 @@ do
         Calendario calendario = new Calendario(NombreCalendario, Descripcion);
         context.Calendarios.Add(calendario);
         context.SaveChanges();
+        Console.WriteLine($"Su calendario se guardo con el Id {calendario.Id}");
 
     }
 
     if (Opcion == 2)
     {
+        Console.WriteLine("Consultar calendario");
         Console.WriteLine("Ingrese el Id del calendario a buscar");
         int IdCalendario = int.Parse(Console.ReadLine());
         Calendario calendario = context.Calendarios.FirstOrDefault(x => x.Id == IdCalendario);
@@ -46,24 +50,39 @@ do
 
     if (Opcion == 3)
     {
+        Console.WriteLine("Creacion de evento");
         Console.WriteLine("Ingrese los datos del evento");
-        Console.WriteLine("ingrese el titulo del evento");
-        string Titulo = Console.ReadLine();
-        Console.WriteLine("Ingrese la descripcion del evento");
-        string DescripcionEvento = Console.ReadLine();
-        Console.WriteLine("Ingrese fecha del evento en el formato DD-MM-AAAA");
-        DateTime Fecha = DateTime.ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-        Console.WriteLine("Ingrese hora de inicio del evento");
-        int HoraInicio = int.Parse(Console.ReadLine());
-        Console.WriteLine("Ingrese hora de finalizacion del evento");
-        int HoraFin = int.Parse(Console.ReadLine());
-        Console.WriteLine("ingrese 1 si desea notificaciones y cualquier otro numero si no desea notificaciones");
-        int NotificacionActiva = int.Parse(Console.ReadLine());
-        bool NotificacionBool = NotificacionActiva == 1;
+        Console.WriteLine("Ingrese el Id del calendario a buscar");
+        int IdCalendario = int.Parse(Console.ReadLine());
+        Calendario calendario = context.Calendarios.FirstOrDefault(x => x.Id == IdCalendario);
+        if (calendario != null)
+        {
+            Console.WriteLine("Ingrese el titulo del evento");
+            string Titulo = Console.ReadLine();
+            Console.WriteLine("Ingrese la descripcion del evento");
+            string DescripcionEvento = Console.ReadLine();
+            Console.WriteLine("Ingrese fecha del evento en el formato DD-MM-AAAA");
+            DateTime Fecha = DateTime.ParseExact(Console.ReadLine(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            Console.WriteLine("Ingrese hora de inicio del evento");
+            int HoraInicio = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese hora de finalizacion del evento");
+            int HoraFin = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese 1 si desea notificaciones y cualquier otro numero si no desea notificaciones");
+            int NotificacionActiva = int.Parse(Console.ReadLine());
+            bool NotificacionBool = NotificacionActiva == 1;
 
-        Evento Evento = new Evento(Titulo, DescripcionEvento, Fecha, HoraInicio, HoraFin, NotificacionBool);
-        context.Eventos.Add(Evento);
-        context.SaveChanges();
+            Evento Evento = new Evento(Titulo, DescripcionEvento, Fecha, HoraInicio, HoraFin, NotificacionBool);
+            calendario.ListaEventos.Add(Evento);
+            context.Calendarios.Update(calendario);
+            context.SaveChanges();
+            Console.WriteLine($"El evento se guardo en el calendario con el Id {Evento.Id}");
+        }
+        else
+        {
+            Console.WriteLine("No se encontro el Id");
+        }
+
+
     }
 
     if (Opcion == 4)
@@ -74,8 +93,8 @@ do
         if (evento != null)
         {
             context.Eventos.Remove(evento);
-            Console.WriteLine("Se elimino" + evento);
             context.SaveChanges();
+            Console.WriteLine("Se elimino" + evento);
         }
         else
         {
@@ -92,9 +111,9 @@ do
         Evento evento = context.Eventos.FirstOrDefault(x => x.Id == Id);
         if (evento != null)
         {
-             
+
             Console.WriteLine("Ingrese los datos del evento");
-            Console.WriteLine("ingrese el titulo del evento");
+            Console.WriteLine("Ingrese el titulo del evento");
             evento.Titulo = Console.ReadLine();
             Console.WriteLine("Ingrese la descripcion del evento");
             evento.DescripcionEvento = Console.ReadLine();
@@ -104,17 +123,17 @@ do
             evento.HoraInicio = int.Parse(Console.ReadLine());
             Console.WriteLine("Ingrese hora de finalizacion del evento");
             evento.HoraFin = int.Parse(Console.ReadLine());
-            Console.WriteLine("ingrese 1 si desea notificaciones y cualquier otro numero si no desea notificaciones");
+            Console.WriteLine("Ingrese 1 si desea notificaciones y cualquier otro numero si no desea notificaciones");
             int NotificacionActiva = int.Parse(Console.ReadLine());
             bool NotificacionBool = NotificacionActiva == 1;
-            
+
             context.Eventos.Update(evento);
             context.SaveChanges();
 
         }
         else
         {
-            Console.WriteLine("No se encontro el Id" +Id+ "del evento.");
+            Console.WriteLine("No se encontro el Id" + Id + "del evento.");
         }
 
 

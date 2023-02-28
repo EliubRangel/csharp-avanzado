@@ -14,6 +14,13 @@ namespace Calendarios
         public int HoraInicio { get; set; }
         public int HoraFin { get; set; }
         public bool NotificacionActiva { get; set; }
+        public Calendario Calendario {get;set;}
+      
+
+        public Evento()
+        {
+
+        }
 
 
         public Evento(string Titulo, string DescripcionEvento, DateTime Fecha, int HoraInicio, int HoraFin, bool NotificacionActiva)

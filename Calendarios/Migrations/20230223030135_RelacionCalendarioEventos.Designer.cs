@@ -3,6 +3,7 @@ using System;
 using Calendarios;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calendarios.Migrations
 {
     [DbContext(typeof(CalendarioDbContext))]
-    partial class CalendarioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230223030135_RelacionCalendarioEventos")]
+    partial class RelacionCalendarioEventos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
